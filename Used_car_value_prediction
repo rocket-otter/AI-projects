@@ -28,3 +28,14 @@ car_values=[100.4,180.2,66.9,55.1,2661,136,3.19,3.4,8.5,110,5500,19,24]
 price = lm.predict([car_values])
 print(price)
 
+from sklearn.ensemble import RandomForestRegressor
+import numpy as np
+# Use RandomForestRegressor model (good r2_score result = 0.92)
+rf = RandomForestRegressor(random_state=42)
+rf.fit(X_train, y_train)
+print("R² (RF):", rf.score(X_test, y_test))
+
+car_values = np.array(car_values).reshape(1, -1)
+predicted_price = rf.predict(car_values)
+
+print(f"Predicted price: ${predicted_price[0]:,.2f}")
