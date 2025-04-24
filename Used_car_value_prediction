@@ -22,3 +22,55 @@ mse = mean_squared_error(y_test, lm.predict(X_test))
 print(mse)
 
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+df = pd.read_csv("data/carprice.csv")
+df = df.drop("car_ID", axis=1)  #Discard useless parameters
+X = df.drop("price", axis=1)
+y = df["price"]
+
+# Split dataset into 70% train and 30% test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model with linear regression
+lm = LinearRegression()
+lm.fit(X_train, y_train)
+
+# Evalute model
+mse = mean_squared_error(y_test, lm.predict(X_test))
+print(mse)
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+df = pd.read_csv("data/carprice.csv")
+df = df.drop("car_ID", axis=1)  #Discard useless parameters
+X = df.drop("price", axis=1)
+y = df["price"]
+
+# Split dataset into 70% train and 30% test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model with linear regression
+lm = LinearRegression()
+lm.fit(X_train, y_train)
+
+# Evalute model
+mse = mean_squared_error(y_test, lm.predict(X_test))
+print(mse)
+
+#Assuming using this data:
+#wheelbase	carlength	carwidth	carheight	curbweight	enginesize	boreratio	stroke	compressionratio	horsepower	peakrpm	citympg	highwaympg	price
+#100.4	     180.2	      66.9     	  55.1	      2661	       136	      3.19	     3.4	      8.5	           110	      5500	   19	    24	    13295
+car_values=[100.4,180.2,66.9,55.1,2661,136,3.19,3.4,8.5,110,5500,19,24]
+price = lm.predict([car_values])
+print(price)
+
